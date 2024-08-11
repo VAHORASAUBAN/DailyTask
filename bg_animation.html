@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Animation</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            background-color: azure;
+            cursor: grabbing;
+        }
+        
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+            flex-wrap: wrap;
+            overflow: hidden;
+        }
+        
+        .container span {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 50px;
+            min-width: 50px;
+        }
+        
+        .container span::before {
+            content: "";
+            position: absolute;
+            background: url(https://th.bing.com/th/id/R.ee533477a7a0ab08855f1d7565012a85?rik=pQA9FteCbBBNgg&riu=http%3a%2f%2fimages.unsplash.com%2fphoto-1508766206392-8bd5cf550d1c%3fixlib%3drb-1.2.1%26q%3d80%26fm%3djpg%26crop%3dentropy%26cs%3dtinysrgb%26w%3d1080%26fit%3dmax&ehk=9ur6CjMPRca9yMD0qrsma2KDmuwYID59Z0G4dyTVzKc%3d&risl=&pid=ImgRaw&r=0);
+            background-position: center;
+            background-attachment: fixed;
+            background-size: cover;
+            transition: 20s;
+            opacity: 0;
+            pointer-events: none;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .container span:hover::before {
+            transition: 0s;
+            opacity: 1;
+            width: 1000%;
+            height: 1000%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container"></div>
+</body>
+
+</html>
+<script>
+    for (let i = 1; i < 500; i++) {
+        const shape = document.createElement("span");
+        document.querySelector(".container").appendChild(shape);
+    }
+</script>
