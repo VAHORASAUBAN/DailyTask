@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BELL NOTIFICATION</title>
+    <style>
+        *
+        {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body
+        {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container
+        {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .button
+        {
+            cursor: pointer;
+            background-color: rgb(0, 0, 0);
+            color: antiquewhite;
+            text-align: center;
+            padding: 1rem;
+            margin: 1rem;
+            border: none;
+            outline: none;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0,0.5);
+            z-index: 999;
+            transition: 0.5s;
+        }
+        .button:active
+        {
+            transform: translateY(25%) translateX(15%);
+            box-shadow: 0px 0px 0px green;
+
+        }
+        .notification
+        {
+            width: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: inherit;
+            position: relative;
+            color: aliceblue;
+
+        }
+        .notification::after
+        {
+            min-width: 20px;
+            /* height: 20px; */
+            content: attr(data-count);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: green;
+            position: absolute;
+            top: -5px;
+            right: 5px;
+            transition: 0.3s;
+            border-radius: 50%;
+            opacity: 0;
+            transform: scale(1);
+        }
+
+        .notification::before{
+            content: "\f0f3";
+            font-family: "FontAwesome";
+            display: block;
+            color: black;
+            font-size: 3rem;
+
+
+        }
+        .notification.count::after
+        {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .notification.notify::before
+        {
+            animation: bell 1s ease-out;
+            transform-origin: center top;
+        }
+
+        
+@keyframes bell {
+    0% {
+      transform: rotate(40deg);
+    }
+    12.5% {
+      transform: rotate(-35deg);
+    }
+    25% {
+      transform: rotate(30deg);
+    }
+    37.5% {
+      transform: rotate(-25deg);
+    }
+    50% {
+      transform: rotate(20deg);
+    }
+    62.5% {
+      transform: rotate(-15deg);
+    }
+    75% {
+      transform: rotate(10deg);
+    }
+    87.5% {
+      transform: rotate(-5deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="container">
+        <div class="notification" id="Notification">
+            <!-- <i class="fas fa-bell fa-5x fa-bell"></i> -->
+        </div>
+        <button class="button" id="Button">Notify Me</button>
+    </div>
+</body>
+</html>
+<script>
+
+
+const button = document.getElementById("Button");
+const notify = document.getElementById("Notification");
+
+button.addEventListener("click",()=>{
+    
+    const counter = Number(notify.getAttribute("data-count")) || 0;
+    
+    notify.setAttribute("data-count", counter + 1);
+    notify.classList.add("count")    
+    notify.classList.add("notify")
+
+});
+
+notify.addEventListener("animationend",()=>{
+    notify.classList.remove("notify")
+});
+
+</script>
