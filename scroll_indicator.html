@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Bar </title>
+    <style>
+        *
+        {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right,green,antiquewhite,rgb(205, 122, 136));
+            font-family: sans-serif;
+        }
+        .text
+        {
+            color: black;
+            line-height: 10rem;
+            text-align: center;
+            align-content: center;
+        }
+        span{
+            background: aliceblue;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0px 5px 5px rgb(72, 200, 125);
+            margin: 0.5rem;
+            display: inline-block;
+            transition: transform 0.2s;
+            width: 150px;
+        }
+        span:hover
+        {
+            transform: scale(1.1);
+        }
+        .indicator
+        {
+            background: linear-gradient(to right,rgb(204, 207, 107),rgb(151, 179, 57),rgb(98, 114, 10));
+            height: 20px;
+            border-radius: 4px;
+            width: 10%;
+            position: fixed;
+            top: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="indicator" id="scrollIndicator"></div>
+    <div class="text">
+        <h2><span>A</span></h2>
+        <h2><span>A</span></h2>
+        <h2><span>A</span></h2>
+        <h2><span>A</span></h2>
+        <h2><span>A</span></h2>
+        <h2><span>A</span></h2>
+        <h2><span>A</span></h2>
+        <h2><span>A</span></h2>
+    </div>
+</body>
+</html>
+<script>
+    const scrollIndicator = document.getElementById("scrollIndicator");
+    const totalScrollHeight = document.body.scrollHeight-window.innerHeight;
+
+    function updateScrollIndicator ()
+    {
+        const scrollPercent = (window.scrollY/totalScrollHeight) * 100;
+
+        scrollIndicator.style.width = scrollPercent + "%";
+
+    }
+
+    window.addEventListener("scroll",updateScrollIndicator)
+
+    updateScrollIndicator();
+</script>
