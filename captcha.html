@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAPTCHA</title>
+    <style>
+        *{
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+   font-family: sans-serif; 
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to right,#d4fc79,#96e6a1);
+    animation: colorChange 10s infinite alternate;
+}
+
+@keyframes colorChange {
+    0%{
+        background: #e0c3fc;
+    }
+    100%{
+        background: #c3e8fc;
+    }
+    
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    width: 50%;
+}
+
+h2{
+    font-size: 2.5rem;
+    text-align: center;
+    color: #4a90e2;
+    text-shadow: 2px 2px 4px #ccc;
+    margin-bottom: 20px;
+}
+
+div{
+    margin: 1rem;
+}
+
+button{
+    margin: 0.5rem;
+    font-size: 1.5rem;
+    padding: 0.8rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover{
+    transform: scale(1.1);
+}
+
+.generate{
+   font-size: 2rem;
+   padding: 1rem;
+   background: #3a3a3a; 
+   color: #fff;
+   text-align: center;
+   border-radius: 5px;
+   width: 250px;
+   box-shadow: 2px 2px 4px #444;
+}
+
+.client-text{
+    text-align: center;
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 5px;
+    background: #96e6a1;
+}
+
+.submit{
+    background-color: #5e5e5e;
+    color: whitesmoke;
+}
+
+.submit:hover{
+    background: #828282;
+}
+
+.refresh{
+    background-color: #5e5e5e;
+    color: whitesmoke;
+}
+
+.refresh:hover{
+    background-color: #e0e0e0;
+
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="status" id="_status"></h2>
+        <div class="generateBox">
+            <input type="text" readonly id="generate" class="generate">
+        </div>
+        <div class="your_chance">
+            <input type="text" class="client-text" id="_client-text" placeholder="Enter Text you see!">
+        </div>
+        <button class="submit" id="_submit" type="button">Submit</button>
+        <button class="refresh" id="_refresh" type="button">Refresh</button>
+
+    </div>
+</body>
+</html>
+<script>
+
+const display = document.getElementById("_status");
+const body = document.body;
+const submit = document.getElementById("_submit");
+const refresh = document.getElementById("_refresh");
+
+const char = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
+let captcha = "";
+
+
+body.onload = function generateCaptcha(){
+
+    const captchaLength = 6;
+    for(let i = 0; i<captchaLength; i++){
+        const randomIndex = Math.floor(Math.random() * char.length);
+        captcha += char.substring(randomIndex,randomIndex + 1);
+    }
+
+    document.getElementById("generate").value = captcha;
+    display.innerText = "Captcha Generator"
+
+
+}
+
+submit.onclick = function chekckInput(){
+    const input = document.getElementById("_client-text").value;
+
+    if(input === ""){
+        display.innerText = "Please Enter the text Shown below👇";
+    }else if(input === captcha){
+        display.innerText = "Matched😎";
+    }else{
+        display.innerText = "Not-Matched😖";
+    }
+
+}
+
+refresh.onclick = function refreshCaptcha(){
+
+    let newCaptcha = "";
+    for(let i = 0; i < captcha.length;i++){
+        const randomChar = char[Math.floor(Math.random() * char.length)]
+        newCaptcha += randomChar;
+    }
+    captcha = newCaptcha;
+    document.getElementById("generate").value = captcha;
+    display.innerText = "Captcha Generator"
+
+
+}
+</script>
