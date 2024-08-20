@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Disco Color Effect Project</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  transition: all 0.2s ease;
+  background-color: aqua;
+}
+
+.container{
+  background-color: #333;
+  width: 25rem;
+  height: 10rem;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.light{
+  background-color: #000;
+  border-radius: 100%;
+  position: relative;
+  height: 2.5rem;
+  width: 2.5rem;
+  transition: all 0.2s ease;
+  margin: 0.5rem;
+}
+
+.light.active{
+  background-color: var(--light-color);
+  box-shadow: 0px 0px 20px 5px var(--light-color);
+}
+
+.light.Light1{
+  --light-color:#00FFFC;
+}
+
+.light.Light2 {
+  --light-color: #FC00FF;
+}
+
+.light.Light3 {
+  --light-color: #fffc00;
+}
+
+.light.Light4 {
+  --light-color: green;
+}
+
+.light.Light5 {
+  --light-color: orange;
+}
+
+.light.Light6 {
+  --light-color: purple;
+}
+
+    </style>
+  </head>
+  <body>
+
+      <div class="container">
+        <div class="light Light1"></div>
+        <div class="light Light2"></div>
+        <div class="light Light3"></div>
+        <div class="light Light4"></div>
+        <div class="light Light5"></div>
+        <div class="light Light6"></div>
+      </div>
+  
+
+  </body>
+</html>
+<script>
+    const lights = document.querySelectorAll(".light");
+const body = document.body;
+
+let active = 0;
+
+setInterval(()=>{
+  changeColor();
+},1000);
+
+function changeColor(){
+
+  if(active > 0){
+    lights[active -1].classList.remove('active');
+  }
+
+  body.style.backgroundColor = getComputedStyle(lights[active]).getPropertyValue('--light-color');
+
+  lights[active].classList.add('active');
+
+  if(active === lights.length -1){
+    
+    setTimeout(()=>{
+      lights[active].classList.remove('active');
+      active = 0;
+    },900);
+  }else{
+    active++;
+  }
+
+
+}
+</script>
