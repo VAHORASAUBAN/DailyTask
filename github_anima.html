@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Github Contribution </title>
+    <style>
+        
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #881af1;
+}
+
+h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 10%;
+    color: whitesmoke;
+    text-decoration: underline;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 420px;
+}
+
+.activity{
+    background-color: rgb(214,214,214);
+    box-shadow: 0 0 2px rgb(151,151,151);
+    margin: 5px;
+    height: 35px;
+    width: 35px;
+    transition: 3s ease;
+    overflow: hidden;
+    border-radius: 2px;
+}
+
+.activity:hover{
+    transition-duration: 0s;
+    overflow: hidden;
+}
+    </style>
+</head>
+<body>
+
+    <h1>GitHub Contribution Activity</h1>
+    <div class="container" id="_container">
+        
+    </div>
+
+</body>
+</html>
+<script>
+    const container = document.getElementById("_container");
+
+// adding different green colors 
+
+let greenColorCodes = [
+    "#7CFC00",
+    "#78AB46",
+    "#3B5323",
+    "#458B00",
+    "#BCED91",
+    "#61B329",
+    "#5DFC0A",
+    "#4CBB17",
+    "#4AC948",
+    "#00EE00",
+    "#33FF33",
+    "#00C957",
+];
+
+let greenColorCodes2 = [
+    "#00FC00",
+    "#782222",
+    "#3B5323",
+    "#400ddd",
+    
+];
+
+const numberOfSquares = 99;
+
+for(let i = 0; i < numberOfSquares; i++){
+
+    const activity = document.createElement("div");
+    activity.classList.add("activity");
+
+    activity.addEventListener("mouseover",()=>{
+        addColor(activity);
+    });
+
+    activity.addEventListener("mouseout",()=>{
+        addColor(activity);
+    });
+   
+    container.appendChild(activity);
+
+}
+
+function addColor(squaresTile){
+    const gettingColor = greenColors();
+    squaresTile.style.backgroundColor = gettingColor;
+    squaresTile.style.boxshadow = ` 0 0 2px ${gettingColor}, 0 0 10px ${gettingColor}`;
+}
+
+
+function stickColor(squaresTile){
+    const gettingColor = greenColors2();
+    squaresTile.style.backgroundColor = gettingColor;
+    squaresTile.style.boxshadow = ` 0 0 2px ${gettingColor}, 0 0 10px ${gettingColor}`;
+}
+
+function greenColors(){
+    return greenColorCodes[Math.floor(Math.random() * greenColorCodes.length)]
+}
+
+function greenColors2(){
+    return greenColorCodes2[Math.floor(Math.random() * greenColorCodes2.length)]
+}
+
+
+</script>
