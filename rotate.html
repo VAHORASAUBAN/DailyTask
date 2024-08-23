@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotating Animation</title>
+    <style>
+        
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #2e19ff;
+}
+
+.squares{
+    border: 100px solid #810044;
+    position: fixed;
+    transform: translate(-50%,-50%) rotate(0deg);
+    animation: 20s ease-in-out infinite;
+}
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="squares"></div>
+        <div class="squares"></div>
+        <div class="squares"></div>
+        <div class="squares"></div>
+        <div class="squares"></div>
+        <div class="squares"></div>
+        <div class="squares"></div>
+        <div class="squares"></div>
+        <div class="squares"></div>
+        <div class="squares"></div>
+        <div class="squares"></div>
+        <div class="squares"></div>
+        <div class="squares"></div>
+        <div class="squares"></div>
+        <div class="squares"></div>
+        <div class="squares"></div>
+        <div class="squares"></div>
+        <div class="squares"></div>
+        <div class="squares"></div>
+        <div class="squares"></div>
+        <div class="squares"></div>
+        <div class="squares"></div>
+        <div class="squares"></div>
+        <div class="squares"></div>
+        <div class="squares"></div>
+        <div class="squares"></div>
+    </div>
+
+</body>
+</html>
+<script>
+    const squares = document.querySelectorAll(".squares");
+
+squares.forEach((square,index)=>{
+        square.style.borderWidth = (index + 1) * 4 + "px";
+        square.style.animationName = `rotate-${index}`;
+
+        const degree = (index + 1) * 360 *2;
+
+        const animation = document.createElement("style");
+        animation.innerHTML = `@keyframes rotate-${index}{
+            to{
+                transform:translate(-50%,-50%) rotate(${degree}deg);
+                border-radius: 50%;
+                opacity:0.1;
+                border: 60px solid #b9ff73;
+            }
+        }`;
+
+        document.body.appendChild(animation);
+
+});
+</script>
