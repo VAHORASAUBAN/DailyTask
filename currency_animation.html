@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Stack Project</title>
+    <style>
+        *{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right,#2e2c2c,#000000);
+}
+
+.container{
+    position: relative;
+    width: 320px;
+    height: 640px;
+    transform: rotate(-30deg) skew(25deg) scale(0.8);
+    margin-top: 12rem;
+}
+
+img{
+    width: 320px;
+    height: 640px;
+    position: absolute;
+}
+
+.container img:nth-child(1){
+    opacity: 1;
+    z-index: 4;
+}
+
+.container img:nth-child(2){
+    opacity: 0.8;
+    z-index: 3;
+}
+
+.container img:nth-child(3){
+    opacity: 0.6;
+    z-index: 2;
+}
+
+.container img:nth-child(4){
+    opacity: 0.4;
+    z-index: 1;
+}
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="https://cdn.pixabay.com/photo/2013/07/13/01/21/euro-155597_640.png" alt=""
+        data-speed="40" class="layer"
+        >
+
+        <img src="https://cdn.pixabay.com/photo/2013/07/13/01/21/euro-155597_640.png" alt=""
+        data-speed="30" class="layer"
+        >
+
+        <img src="https://cdn.pixabay.com/photo/2013/07/13/01/21/euro-155597_640.png" alt=""
+        data-speed="20" class="layer"
+        >
+
+        <img src="https://cdn.pixabay.com/photo/2013/07/13/01/21/euro-155597_640.png" alt=""
+        data-speed="10" class="layer"
+        >
+    </div>
+</body>
+</html>
+<script>
+    document.addEventListener("mousemove",effect);
+
+const layers = document.querySelectorAll(".layer")
+
+function effect(e){
+    layers.forEach((layer)=>{
+        const movement = layer.getAttribute("data-speed");
+        let x = (window.innerWidth - e.pageX * movement) /250;
+        let y = (window.innerWidth - e.pageX * movement) /250;
+
+        layer.style.transform = `translate(${-x}px) translateY(${y}px)`;
+    });
+}
+</script>  
