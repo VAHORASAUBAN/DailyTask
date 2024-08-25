@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrolling Images</title>
+    <style>
+        
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family:  sans-serif;
+  }
+
+  body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    flex-direction: column;
+    margin-top: 1rem;
+    background-color: lightblue;
+    color: aliceblue;
+  }
+  
+  .card{
+    background:url(https://cdn.pixabay.com/photo/2013/07/21/13/00/rose-165819_640.jpg) ;
+    background-size: cover;
+    border-radius: 5px;
+    width: 600px;
+    height: 250px;
+    margin: 1rem;
+    padding: 1rem;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+    transition: all 2s ease;
+    
+  }
+
+  h2{
+    margin: 1rem;
+  }
+
+  .card:nth-child(even){
+    transform: translateX(-200%) rotate(90deg) scale(0.1);
+  }
+
+  .card:nth-child(odd){
+    transform: translateX(-200%) rotate(90deg) scale(0.1);
+  }
+
+  .card.slidingIn{
+    transform: translateX(0) rotate(0deg) scale(1);
+  }
+    </style>
+</head>
+<body>
+
+    <div class="card"><h2>A Blue Flower</h2></div>
+    <div class="card"><h2>A Blue Flower</h2></div>
+    <div class="card"><h2>A Blue Flower</h2></div>
+    <div class="card"><h2>A Blue Flower</h2></div>
+    <div class="card"><h2>A Blue Flower</h2></div>
+    <div class="card"><h2>A Blue Flower</h2></div>
+    <div class="card"><h2>A Blue Flower</h2></div>
+    <div class="card"><h2>A Blue Flower</h2></div>
+    <div class="card"><h2>A Blue Flower</h2></div>
+    <div class="card"><h2>A Blue Flower</h2></div>
+    <div class="card"><h2>A Blue Flower</h2></div>
+    <div class="card"><h2>A Blue Flower</h2></div>
+    <div class="card"><h2>A Blue Flower</h2></div>
+    <div class="card"><h2>A Blue Flower</h2></div>
+    <div class="card"><h2>A Blue Flower</h2></div>
+    <div class="card"><h2>A Blue Flower</h2></div>
+    <div class="card"><h2>A Blue Flower</h2></div>
+    <div class="card"><h2>A Blue Flower</h2></div>
+    <div class="card"><h2>A Blue Flower</h2></div>
+   
+</body>
+</html>
+<script>
+    const card = document.querySelectorAll(".card");
+window.addEventListener("scroll",animateCards);
+
+
+function animateCards(){
+
+    const checkingBottom = (window.innerHeight / 4) * (175/35);
+
+    card.forEach((singleCard)=>{
+        const cardTop = singleCard.getBoundingClientRect().top;
+
+        let toSlidIn = cardTop < checkingBottom;
+
+        if(toSlidIn){
+            singleCard.classList.add("slidingIn");
+        }else{
+            singleCard.classList.remove("slidingIn");
+        }
+    });
+
+}
+</script>
