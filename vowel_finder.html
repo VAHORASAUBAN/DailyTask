@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vowel Checker/Counter</title>
+    <style>
+        
+
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgb(173,204,204);
+}
+
+.container{
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;   
+}
+.container:hover{
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+h1{
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+textarea{
+    width: 500px;
+    height: 350px;
+    margin: 10px auto;
+    display: block;
+    font-size: 24px;
+    padding: 10px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    resize: none;
+}
+
+button{
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: #ffffff;
+    border: none;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover{
+    background-color: #45a049;
+}
+
+#result{
+    font-size: 20px;
+    margin-top: 20px;
+    color: #000000;
+    font-weight: bold;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Vowel Checker</h1>
+        <textarea id="inputText" placeholder="Enter Your Text Here" ></textarea>
+        <button onclick="checkVowels()"> Check Vowels</button>
+        <p id = "result">Result</p>
+    </div>
+</body>
+</html>
+<script>
+    function checkVowels(){
+    var text = document.getElementById("inputText").value;
+    var vowelCount = 0;
+
+    // convert it into lowercase
+    text = text.toLowerCase();
+
+    for(var i = 0; i < text.length; i++){
+
+        var char = text.charAt(i); // 0 
+        if(isVowel(char)){
+             vowelCount++;   
+        }
+    }
+
+    var result = document.getElementById("result");
+    result.textContent = "Total Vowels: " + vowelCount;
+
+}
+
+function isVowel(char){
+    var vowels = ["a","e","i","o","u"];
+    return vowels.includes(char);
+}
+
+</script>
